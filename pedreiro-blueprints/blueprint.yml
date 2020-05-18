@@ -1,0 +1,39 @@
+---
+
+- type: folder
+  name: {{ name }}
+  children:
+    - type: folder
+      name: src
+      children:
+        - type: folder
+          name: main
+          children:
+            - type: folder
+              name: java
+
+        - type: folder
+          name: test
+          children:
+            - type: folder
+              name: java
+
+    - type: file
+      name: build.gradle
+      source: build.gradle
+
+    - type: command
+      command: gradle wrapper
+
+    - type: file
+      name: .gitignore
+      source: gitignore.txt
+
+    - type: command
+      command: git init
+
+    - type: command
+      command: git add .
+
+    - type: command
+      command: git commit -m "Initial commit"
