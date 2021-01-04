@@ -1,5 +1,4 @@
 #! /bin/bash
-
 # This is the first setup to install the basic tools
 
 sudo apt-get update -y

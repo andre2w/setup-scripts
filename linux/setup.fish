@@ -1,3 +1,5 @@
+#!/usr/bin/env fish
+
 source ../nix/configure_fish.fish
 
 setup_theme
