@@ -1,4 +1,4 @@
-don't use arrowkeys
+" don't use arrowkeys
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
@@ -10,11 +10,25 @@ inoremap <Down>  <NOP>
 inoremap <Left>  <NOP>
 inoremap <Right> <NOP>
 
-call plug#begin("~/.nvim/plugged")
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    Plug 'morhetz/gruvbox'
-call plug#end
+call plug#begin('~/.nvim/plugged')
+     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+     Plug 'vim-airline/vim-airline'
+     Plug 'vim-airline/vim-airline-themes'
+     Plug 'lifepillar/vim-gruvbox8'
+     Plug 'preservim/nerdtree'
+     Plug 'preservim/nerdcommenter'
+     Plug 'tpope/vim-surround'
+call plug#end()
 
-colorscheme 'gruvbox'
+" Configure for coc.nvim 
+source ./cocconfig.vim
+
+" NERDCommeter configurations
+filetype plugin on
+let g:NERDCreateDefaultMappings = 1
+
+colorscheme gruvbox8
+
+" UI Personal Prefrences
+set number
+set showmatch
