@@ -19,10 +19,12 @@ call plug#begin('~/.nvim/plugged')
      Plug 'preservim/nerdtree'
      Plug 'preservim/nerdcommenter'
      Plug 'tpope/vim-surround'
+     Plug 'kassio/neoterm'
 call plug#end()
 
 " Configure for coc.nvim - Path must be absolute
 source ~/.config/nvim/cocconfig.vim
+command! -nargs=0 Prettier :CocCommand prettier.formatFile " Setup prettier for CoC
 
 " NERDCommeter configurations
 filetype plugin on
@@ -38,3 +40,11 @@ set clipboard+=unnamedplus
 
 " UI Personal Prefrences
 set number
+
+" Set formatting to 4 spaces
+set tabstop=4       " number of visual spaces per TAB
+set softtabstop=4   " number of spaces in tab when editing
+set shiftwidth=4    " number of spaces to use for autoindent
+set expandtab       " tabs are space
+set autoindent
+set copyindent      " copy indent from the previous line
