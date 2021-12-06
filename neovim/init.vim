@@ -25,6 +25,8 @@ call plug#begin('~/.nvim/plugged')
     Plug 'neovim/nvim-lspconfig'
     Plug 'RishabhRD/popfix'
     Plug 'RishabhRD/nvim-lsputils'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 call plug#end()
 
 " Remove this for now because it's messing up with react
@@ -60,6 +62,8 @@ set autoindent
 set copyindent      " copy indent from the previous line
 
 set autoread " This will update the file when there's an external change 
+
+let g:coq_settings = { 'auto_start': 'shut-up' }
 
 lua <<EOF
 
@@ -135,12 +139,39 @@ lua <<EOF
     end
 
     local nvim_lsp = require('lspconfig')
-    nvim_lsp['tsserver'].setup {
-        on_attach = on_attach,
-        flags = { 
+
+    -- coq requires python and sql to be installed 
+    -- install instructions here: https://github.com/ms-jpq/coq_nvim
+    local coq = require('coq')
+    nvim_lsp.tsserver.setup(coq.lsp_ensure_capabilities({
+         on_attach = on_attach,
+         flags = { 
             debounce_text_changes = 150
-        }
-    }
+         }
+    }))
 
 EOF
+
+" Tree-sitter configuration
+" this comes from https://github.com/nvim-treesitter/nvim-treesitter#modules
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",   
+  sync_install = false,
+  highlight = {
+    enable = true,
+    additional_vim_regex_highlighting = false,
+  },
+  incremental_selection = {
+    enable = true,
+    keymaps = {
+      init_selection = "gnn",
+      node_incremental = "grn",
+      scope_incremental = "grc",
+      node_decremental = "grm",
+    },
+  },
+}
+EOF
+
 
