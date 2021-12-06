@@ -1,0 +1,14 @@
+{
+  "name": "{{ name }}",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "ava": {
+    "extensions": ["ts"],
+    "require": ["ts-node/register"]
+  },
+  "scripts": {
+    "test": "ava",
+    "clean": "rm -rf build/"
+  }
+}

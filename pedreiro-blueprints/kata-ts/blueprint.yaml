@@ -1,0 +1,25 @@
+---
+- type: folder
+  name: {{ name }}
+  children:
+    - type: folder
+      name: src
+    
+    - type: folder
+      name: test
+    
+    - type: file
+      name: package.json
+      source: package.json
+
+    - type: file
+      name: tsconfig.json
+      source: tsconfig.json
+    
+    - type: file
+      name: .gitignore
+      source: gitignore.txt
+    
+    - type: command
+      win: "yarn.cmd add --dev @types/node ava ts-node typescript"
+      command: "yarn add --dev @types/node ava ts-node typescript"
